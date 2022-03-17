@@ -38,11 +38,40 @@ function solveInfer(cells){
 }
 
 function solveBackTrack(cells){
+	let unsolved = Array.from(getUnsolved(cells).keys());
+	unsolved = unsolved.map((index) => ({index, suitable: []}))
+
+	if(unsolved.length === 0)
+		return cells;
+
+	cells = [...cells];
+
+	let i = 0, solved = false;
+	
+	unsolved[0].suitable = Array.from(getSuitableFor(cells, unsolved[0].index));
+	while(i >= 0 && !solved){
+		const cellIndex = unsolved[i].index;
+		const suitable = unsolved[i].suitable;
+		
+		if(suitable.length === 0){
+			cells[cellIndex] = 0;
+			i--;
+			continue;
+		} else {
+			cells[cellIndex] = suitable.pop();
+			i++;
+			if(i === unsolved.length)
+				solved = true;
+			else{
+				unsolved[i].suitable = Array.from(getSuitableFor(cells, unsolved[i].index));
+			}
+		}
+	}
+
 	return cells;
 }
 
 function solve(cells){
-	console.clear();
 	const inferSolved = solveInfer(cells);
 	const backtrackSolved = solveBackTrack(inferSolved);
 	return backtrackSolved;
