@@ -1,4 +1,4 @@
-export function getAffectedCells(cell){
+export function getAffectedCells(cell, includeSelf = true){
 	const affected = new Set();
 	const row = Math.floor(cell / 9);
 	const col = cell % 9;
@@ -21,6 +21,9 @@ export function getAffectedCells(cell){
 			affected.add(cornerRow * 9 + i * 9 + cornerCol * 3 + j)
 		}
 	}
+
+	if(!includeSelf)
+		affected.delete(cell);
 
 	return affected;
 }
