@@ -1,5 +1,4 @@
-import React, {useState, useEffect, useReducer} from 'react';
-import Grid from './Grid.js';
+import React, {useEffect, useReducer} from 'react';
 import Sudoku from './Sudoku.js';
 import {getAffectedCells, getNewSelected} from './utils.js';
 
@@ -84,12 +83,6 @@ function App() {
 				dispatch(action);
 			}
 		});
-		dispatch({type: "EDIT", arg: 1});
-		dispatch({type: "MOVE", arg: "RIGHT"});
-		dispatch({type: "EDIT", arg: 1});
-		dispatch({type: "MOVE", arg: "UP"});
-		dispatch({type: "MOVE", arg: "UP"});
-		dispatch({type: "EDIT", arg: 1});
 	}, [])
 
   return (
