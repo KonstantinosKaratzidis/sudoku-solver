@@ -1,6 +1,7 @@
 import React, {useEffect, useReducer} from 'react';
 import Sudoku from './Sudoku.js';
 import {getAffectedCells, getNewSelected} from './utils.js';
+import solve from './solve.js';
 
 const keyToAction = {
 	"ArrowUp": {type: "MOVE", arg: "UP"},
@@ -59,6 +60,16 @@ function processAction(state, {type, arg}){
 			return processEdit(state, arg);
 		case "RESET":
 			return initialState;
+		case "SOLVE": // TODO: add error message when isWrong
+			if(state.isWrong){
+				console.error("FIX THE ERRORS FIRST");
+				return state;
+			}
+			const cellArr = state.cells.map(cell => cell.value);
+			return {
+				...state,
+				cells: solve(cellArr).map(value => ({value, wrong: false}))
+			};
 		default:
 			return state;
 	}

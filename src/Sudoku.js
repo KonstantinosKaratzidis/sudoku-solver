@@ -32,7 +32,7 @@ const Sudoku = ({cells, selected, dispatch}) => {
 	return (
 		<div id="sudoku">
 			<Grid cells={cells} selected={selected} />
-			<button>Solve</button>
+			<button onClick={() => dispatch({type: "SOLVE"})}>Solve</button>
 			<button onClick={() => dispatch({type: "RESET"})}>Reset</button>
 		</div>
 	)
