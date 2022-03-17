@@ -1,41 +1,99 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
 import Grid from './Grid.js';
+import Sudoku from './Sudoku.js';
 import {getAffectedCells, getNewSelected} from './utils.js';
 
-const cells = Array(81).fill(0).map(() => {
-	return {
-		value: 0,
-		selected: false,
-		highligted: false,
-		wrong: false
+const keyToAction = {
+	"ArrowUp": {type: "MOVE", arg: "UP"},
+	"ArrowDown": {type: "MOVE", arg: "DOWN"},
+	"ArrowLeft": {type: "MOVE", arg: "LEFT"},
+	"ArrowRight": {type: "MOVE", arg: "RIGHT"},
+	"0": {type: "EDIT", arg: 0},
+	"1": {type: "EDIT", arg: 1},
+	"2": {type: "EDIT", arg: 2},
+	"3": {type: "EDIT", arg: 3},
+	"4": {type: "EDIT", arg: 4},
+	"5": {type: "EDIT", arg: 5},
+	"6": {type: "EDIT", arg: 6},
+	"7": {type: "EDIT", arg: 7},
+	"8": {type: "EDIT", arg: 8},
+	"9": {type: "EDIT", arg: 9},
+	" ": {type: "EDIT", arg: 0},
+}
+
+function processEdit(state, arg) {
+	const newState = {
+		...state,
+		isWrong: false,
+		cells: state.cells.map((cell, index) => (
+			(index !== state.selected)
+				? {...cell, wrong: false}
+				: {...cell, value: arg, wrong: false}
+		)
+	)}
+
+	for(let i = 0; i < 81; i++){
+		const cellValue = newState.cells[i].value;
+		if(cellValue === 0)
+			continue;
+		const affected = getAffectedCells(i);
+		affected.delete(i);
+		for(const cell of affected){
+			const affectedValue = newState.cells[cell].value;
+			if(cellValue === affectedValue){
+				newState.cells[i].wrong = true;
+				newState.isWrong = true;
+				break;
+			}
+		}
 	}
-});
+	return newState;
+}
 
-const selected = 0;
+function processAction(state, {type, arg}){
+	switch(type){
+		case "MOVE":
+			return {...state, selected: getNewSelected(state.selected, arg)};
+		case "EDIT":
+			if(!state.editable)
+				return state;
+			return processEdit(state, arg);
+		default:
+			return state;
+	}
+}
 
-
+const initialState = {
+	isWrong: false,
+	editable: true,
+	selected: 40,
+	cells: Array(81).fill(0).map(() => ({
+		value: 0,
+		wrong: false
+	}))
+};
 
 function App() {
-	const [selected, setSelected] = useState(30);
+	const [state, dispatch] = useReducer(processAction, initialState);
 
 	useEffect(() => {
-		const keyHandler = (ev) => {
-			setSelected(getNewSelected(selected, ev.key));
-		}
-		document.addEventListener("keydown", keyHandler);
-		return () => document.removeEventListener("keydown", keyHandler);
-	})
+		document.addEventListener("keydown", (ev) => {
+			const action = keyToAction[ev.key];
+			if(action){
+				ev.preventDefault();
+				dispatch(action);
+			}
+		});
+		dispatch({type: "EDIT", arg: 1});
+		dispatch({type: "MOVE", arg: "RIGHT"});
+		dispatch({type: "EDIT", arg: 1});
+		dispatch({type: "MOVE", arg: "UP"});
+		dispatch({type: "MOVE", arg: "UP"});
+		dispatch({type: "EDIT", arg: 1});
+	}, [])
 
-	const affected = getAffectedCells(selected);
-	const state = cells.map((cell, index) => {
-		return {
-			...cell,
-			selected: index === selected,
-			highligted: affected.has(index)
-		}
-	})
   return (
-		<Grid cells={state} />
+		<Sudoku {...state} />
   );
 }
 

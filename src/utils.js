@@ -26,22 +26,22 @@ export function getAffectedCells(cell){
 }
 
 export function getNewSelected(cell, direction){
-	if(direction === "ArrowUp"){
+	if(direction === "UP"){
 		const newCell = cell - 9;
 		if(newCell >= 0)
 			return newCell;
 		return 81 + newCell;
-	} else if(direction === "ArrowDown"){
+	} else if(direction === "DOWN"){
 		const newCell = cell + 9;
 		if(newCell < 81)
 			return newCell;
 		return newCell % 81;
-	} else if(direction === "ArrowLeft"){
+	} else if(direction === "LEFT"){
 		const firstInRow = Math.floor(cell / 9) * 9;
 		if(cell - 1 >= firstInRow)
 			return cell - 1;
 		return firstInRow + 8;
-	} else if(direction === "ArrowRight"){
+	} else if(direction === "RIGHT"){
 		const lastInRow = Math.floor(cell / 9) * 9 + 8;
 		if(cell + 1 <= lastInRow)
 			return cell + 1;

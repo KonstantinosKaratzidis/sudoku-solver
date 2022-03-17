@@ -47,9 +47,22 @@
 }
 
 #sudoku-grid > input.highligted.selected {
-	background-color: rgba(0, 255, 0, 0.3);
+	background-color: rgba(0, 255, 0, 0.6);
 }
 
 #sudoku-grid > input.highligted {
 	background-color: rgba(0, 255, 0, 0.15);
+}
+
+#sudoku-grid > input.highligted.wrong {
+	background-color: rgba(255, 0, 0, 0.2);
+}
+
+#sudoku-grid > input.highligted.selected.wrong {
+	background-color: rgba(255, 0, 0, 0.6);
+	color: black;
+}
+
+#sudoku-grid > input.wrong {
+	color: red;
 }
