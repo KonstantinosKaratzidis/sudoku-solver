@@ -57,6 +57,8 @@ function processAction(state, {type, arg}){
 			if(!state.editable)
 				return state;
 			return processEdit(state, arg);
+		case "RESET":
+			return initialState;
 		default:
 			return state;
 	}
@@ -86,7 +88,7 @@ function App() {
 	}, [])
 
   return (
-		<Sudoku {...state} />
+		<Sudoku {...state} dispatch={dispatch}/>
   );
 }
 

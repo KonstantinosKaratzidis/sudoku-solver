@@ -28,10 +28,12 @@ const Grid = ({cells, selected}) => {
 	)
 }
 
-const Sudoku = ({cells, selected}) => {
+const Sudoku = ({cells, selected, dispatch}) => {
 	return (
 		<div id="sudoku">
 			<Grid cells={cells} selected={selected} />
+			<button>Solve</button>
+			<button onClick={() => dispatch({type: "RESET"})}>Reset</button>
 		</div>
 	)
 }
