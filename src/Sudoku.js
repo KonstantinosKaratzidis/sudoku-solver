@@ -35,10 +35,14 @@ const Grid = ({cells, selected, dispatch}) => {
 	)
 }
 
-const NumberButtons = () => {
+const NumberButtons = ({dispatch}) => {
 	return (
 			<>
-		{Array(9).fill(0).map((v, index) => (<button key={index}>{index + 1}</button>))}
+			{Array(9).fill(0).map((v, index) => (
+				<button key={index} 
+					onClick={() => dispatch({type: "EDIT", arg: index + 1})}>
+					{index + 1}
+				</button>))}
 		</>
 	)
 }
@@ -57,7 +61,7 @@ const Sudoku = ({cells, selected, dispatch}) => {
 				<div className="spacer">
 				</div>
 				<div id="sudoku-controls-numbers">
-					<NumberButtons />
+					<NumberButtons dispatch={dispatch}/>
 				</div>
 			</div>
 		</div>
