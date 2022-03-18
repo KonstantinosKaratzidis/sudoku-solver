@@ -52,6 +52,8 @@ function processEdit(state, arg) {
 
 function processAction(state, {type, arg}){
 	switch(type){
+		case "SELECT_CELL":
+			return {...state, selected: arg};
 		case "MOVE":
 			return {...state, selected: getNewSelected(state.selected, arg)};
 		case "EDIT":
