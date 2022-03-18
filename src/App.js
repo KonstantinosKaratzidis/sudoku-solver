@@ -99,7 +99,10 @@ function App() {
 	}, [])
 
   return (
-		<Sudoku {...state} dispatch={dispatch}/>
+		<>
+			<h1>Sudoku Solver</h1>
+			<Sudoku {...state} dispatch={dispatch}/>
+		</>
   );
 }
 

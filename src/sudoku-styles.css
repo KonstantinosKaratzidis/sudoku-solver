@@ -1,3 +1,85 @@
+body {
+	background: radial-gradient(white, #eee);
+}
+
+#root {
+}
+
+
+h1 {
+	text-align: center;
+	font-family: sans-serif;
+	letter-spacing: 4pt;
+	font-size: 3em;
+}
+
+#sudoku {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+#sudoku-grid {
+	width: 500px;
+}
+
+#sudoku-controls {
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	padding: 0 20px;
+}
+
+#sudoku-controls-buttons {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	flex-grow: 1;
+}
+
+#sudoku-controls-buttons > button {
+	font-size: 1.8em;
+	background-color: green;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
+	max-height: 2em;
+}
+
+#sudoku-controls-numbers {
+	flex-grow: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+#sudoku-controls-numbers > button {
+	width: 90px;
+	height: 90px;
+	margin: 2px;
+	border: none;
+	border-radius: 5px;
+	font-size: 50px;
+	font-family: monospace;
+	background-color: lightgrey;
+	color: green;
+	cursor: pointer;
+}
+
+#sudoku-controls-numbers > button:hover {
+	background-color: #aaa;
+}
+
+#sudoku-controls > .spacer {
+	flex-grow: 2;
+}
+
+
 #sudoku-grid {
 	display: grid;
 	grid-template-rows: repeat(9, minmax(0, 1fr));

@@ -19,21 +19,40 @@ const Cell = ({value, selected, highligted, wrong}) => {
 const Grid = ({cells, selected}) => {
 	const highligted = getAffectedCells(selected);
 	return (
-		<div id="sudoku-grid">
+		<>
 			{cells.map((cell, index) =>
 			<Cell {...cell} selected={index === selected}
 				highligted={highligted.has(index)} key={index}/>)
 			}
-		</div>
+		</>
+	)
+}
+
+const NumberButtons = () => {
+	return (
+			<>
+		{Array(9).fill(0).map((v, index) => (<button key={index}>{index + 1}</button>))}
+		</>
 	)
 }
 
 const Sudoku = ({cells, selected, dispatch}) => {
 	return (
 		<div id="sudoku">
-			<Grid cells={cells} selected={selected} />
-			<button onClick={() => dispatch({type: "SOLVE"})}>Solve</button>
-			<button onClick={() => dispatch({type: "RESET"})}>Reset</button>
+			<div id="sudoku-grid">
+				<Grid cells={cells} selected={selected} />
+			</div>
+			<div id="sudoku-controls">
+				<div id="sudoku-controls-buttons">
+					<button onClick={() => dispatch({type: "SOLVE"})}>Solve</button>
+					<button onClick={() => dispatch({type: "RESET"})}>Reset</button>
+				</div>
+				<div class="spacer">
+				</div>
+				<div id="sudoku-controls-numbers">
+					<NumberButtons />
+				</div>
+			</div>
 		</div>
 	)
 }
