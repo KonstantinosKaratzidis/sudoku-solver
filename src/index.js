@@ -45,7 +45,8 @@ ReactDOM.render(
 				</h2>
 				<p>
 					This application was written as a tool for deepening my knowledge
-					on React. You can find the source code for this project on Github.
+					on React. You can find the source code for this project on
+					<a href="https://github.com/KonstantinosKaratzidis/sudoku-solver"> Github</a>.
 				</p>
 			</div>
 	</>
