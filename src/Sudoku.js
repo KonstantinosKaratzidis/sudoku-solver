@@ -43,6 +43,9 @@ const NumberButtons = ({dispatch}) => {
 					onClick={() => dispatch({type: "EDIT", arg: index + 1})}>
 					{index + 1}
 				</button>))}
+				<button onClick={() => dispatch({type: "EDIT", arg: 0})}>
+					Clear
+				</button>
 		</>
 	)
 }
