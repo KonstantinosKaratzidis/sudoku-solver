@@ -62,14 +62,14 @@ function processAction(state, {type, arg}){
 			return processEdit(state, arg);
 		case "RESET":
 			return initialState;
-		case "SOLVE": // TODO: add error message when isWrong
+		case "SOLVE":
 			if(state.isWrong){
-				console.error("FIX THE ERRORS FIRST");
 				return state;
 			}
 			const cellArr = state.cells.map(cell => cell.value);
 			return {
 				...state,
+				editable: false,
 				cells: solve(cellArr).map(value => ({value, wrong: false}))
 			};
 		default:
