@@ -105,6 +105,9 @@ h1 {
 }
 
 #sudoku-grid > .sudoku-cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-size: 2em;
 	text-align: center;
 	border: 1px solid grey;
