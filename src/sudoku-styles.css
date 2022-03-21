@@ -54,6 +54,11 @@ h1 {
 	max-height: 2em;
 }
 
+#sudoku-controls-buttons > button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 #sudoku-controls-numbers {
 	flex-grow: 1;
 	display: flex;

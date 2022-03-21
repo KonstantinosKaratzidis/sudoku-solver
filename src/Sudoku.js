@@ -50,7 +50,7 @@ const NumberButtons = ({dispatch}) => {
 	)
 }
 
-const Sudoku = ({cells, selected, dispatch}) => {
+const Sudoku = ({cells, selected, dispatch, isWrong}) => {
 	return (
 		<div id="sudoku">
 			<div id="sudoku-grid">
@@ -58,7 +58,7 @@ const Sudoku = ({cells, selected, dispatch}) => {
 			</div>
 			<div id="sudoku-controls">
 				<div id="sudoku-controls-buttons">
-					<button onClick={() => dispatch({type: "SOLVE"})}>Solve</button>
+					<button className={isWrong ? "disabled" : ""} onClick={() => dispatch({type: "SOLVE"})}>Solve</button>
 					<button onClick={() => dispatch({type: "RESET"})}>Reset</button>
 				</div>
 				<div className="spacer">
