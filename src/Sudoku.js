@@ -44,7 +44,7 @@ const NumberButtons = ({dispatch}) => {
 					{index + 1}
 				</button>))}
 				<button onClick={() => dispatch({type: "EDIT", arg: 0})}>
-					Clear
+					C
 				</button>
 		</>
 	)

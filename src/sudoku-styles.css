@@ -7,8 +7,8 @@ body {
 }
 
 #root {
-	width: 800px;
 	margin: 0 auto;
+	max-width: 800px;
 }
 
 h1 {
@@ -155,6 +155,102 @@ h1 {
 #sudoku-grid > .sudoku-cell.wrong {
 	color: red;
 }
+
+@media screen and (max-width: 850px) {
+	#sudoku {
+		flex-flow: column;
+		width: 60vw;
+	}
+
+	#sudoku-grid {
+		width: 60vw;
+		height: 60vw;
+	}
+
+	#sudoku-controls {
+		padding: 0;
+		align-items: stretch;
+		width: auto;
+	}
+
+	#sudoku-controls-buttons {
+		justify-content: space-evenly;
+		flex-grow: 2;
+		flex-flow: row;
+		justify-content: space-between;
+		padding: 10px 0px 10px;
+	}
+	
+	#sudoku-controls-buttons > button {
+		font-size: 1.4em;
+		width: 48%;
+	}
+
+	#sudoku-controls-numbers {
+		flex-grow: 1;
+		justify-content: space-between;
+		align-content: center;
+	}
+
+	#sudoku-controls-numbers  > button {
+		width: 6vw;
+		height: 7vw;
+		line-height: initial;
+		font-size: 2em;
+		margin: 1px;
+	}
+
+	.extra {
+		padding: 0 20px;
+	}
+
+}
+
+@media screen and (max-width: 600px) {
+	#sudoku {
+		width: 90vw;
+	}
+
+	#sudoku-grid {
+		width: 90vw;
+		height: 90vw;
+	}
+
+	#sudoku-controls-numbers  > button {
+		width: 17vw;
+		height: 10vw;
+	}
+
+	#sudoku-controls-numbers  > button:last-child {
+		flex-grow: 0;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	#sudoku {
+		width: 90vw;
+	}
+
+	#sudoku-grid {
+		width: 90vw;
+		height: 90vw;
+	}
+
+	#sudoku-controls-numbers  > button {
+		width: 17vw;
+		height: 17vw;
+	}
+
+	#sudoku-controls-numbers  > button:last-child {
+		flex-grow: 0;
+	}
+
+	h1 {
+		font-size: 2em;
+	}
+}
+
+
 
 .extra h2 {
 	border-bottom: 2px solid black;
